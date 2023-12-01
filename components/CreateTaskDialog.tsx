@@ -58,15 +58,15 @@ function CreateTaskDialog({ open, collection, setOpen }: Props) {
     try {
       await createTask(data);
       toast({
-        title: "Success",
-        description: "Task created successfully!!",
+        title: "Bestätigt",
+        description: "Aufgabe erfolgreich erstellt",
       });
       openChangeWrapper(false);
       router.refresh();
     } catch (e) {
       toast({
         title: "Error",
-        description: "Cannot create task",
+        description: "konnte Aufgabe nicht erstellen",
         variant: "destructive",
       });
     }
@@ -77,7 +77,7 @@ function CreateTaskDialog({ open, collection, setOpen }: Props) {
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
           <DialogTitle className="flex gap-2">
-            Add task to collection:
+          Füge eine Aufgabe der Kategorie hinzu
             <span
               className={cn(
                 "p-[1px] bg-clip-text text-transparent",
@@ -88,8 +88,7 @@ function CreateTaskDialog({ open, collection, setOpen }: Props) {
             </span>
           </DialogTitle>
           <DialogDescription>
-            Add a task to your collection. You can add as many tasks as you want
-            to a collection.
+          Füge eine Aufgabe der Kategorie hinzu. Du kannst soviele Aufgaben hinzufügen wie du möchtest.
           </DialogDescription>
         </DialogHeader>
         <div className="gap-4 py-4">
@@ -103,11 +102,11 @@ function CreateTaskDialog({ open, collection, setOpen }: Props) {
                 name="content"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Content</FormLabel>
+                    <FormLabel>Aufgabe</FormLabel>
                     <FormControl>
                       <Textarea
                         rows={5}
-                        placeholder="Task content here"
+                        placeholder="30min Joggen ..."
                         {...field}
                       />
                     </FormControl>
@@ -120,9 +119,9 @@ function CreateTaskDialog({ open, collection, setOpen }: Props) {
                 name="expiresAt"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Expires at</FormLabel>
+                    <FormLabel>Fällig bis</FormLabel>
                     <FormDescription>
-                      When should this task expire?
+                    Bis wann sollte die Aufgabe abgeschlossen sein?
                     </FormDescription>
                     <FormControl>
                       <Popover>
@@ -136,7 +135,7 @@ function CreateTaskDialog({ open, collection, setOpen }: Props) {
                           >
                             <CalendarIcon className="mr-2 h-4 w-4" />
                             {field.value && format(field.value, "PPP")}
-                            {!field.value && <span>No expiration</span>}
+                            {!field.value && <span>Ohne Datum</span>}
                           </Button>
                         </PopoverTrigger>
                         <PopoverContent>
@@ -144,7 +143,7 @@ function CreateTaskDialog({ open, collection, setOpen }: Props) {
                             mode="single"
                             selected={field.value}
                             onSelect={field.onChange}
-                            initialFocus
+                      
                           />
                         </PopoverContent>
                       </Popover>
@@ -165,7 +164,7 @@ function CreateTaskDialog({ open, collection, setOpen }: Props) {
             )}
             onClick={form.handleSubmit(onSubmit)}
           >
-            Confirm
+            Erstellen
             {form.formState.isSubmitting && (
               <ReloadIcon className="animate-spin h-4 w-4 ml-2" />
             )}

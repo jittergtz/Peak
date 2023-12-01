@@ -67,7 +67,7 @@ function CreateCollectionSheet({ open, onOpenChange }: Props) {
       // Show toast
       toast({
         title: "Error",
-        description: "Something went wrong. Please try again later",
+        description: "Etwas ist schief gelaufen :(",
         variant: "destructive",
       });
       console.log("Error while creating collection", e);
@@ -83,9 +83,9 @@ function CreateCollectionSheet({ open, onOpenChange }: Props) {
     <Sheet open={open} onOpenChange={openChangeWrapper}>
       <SheetContent>
         <SheetHeader>
-          <SheetTitle>Add new collection</SheetTitle>
+          <SheetTitle>Neue Kategorie hinzufügen</SheetTitle>
           <SheetDescription>
-            Collections are a way to group your tasks
+          Kategorien sind eine möglichkeit um deine Aufgaben zu unterteilen
           </SheetDescription>
         </SheetHeader>
         <Form {...form}>
@@ -100,9 +100,9 @@ function CreateCollectionSheet({ open, onOpenChange }: Props) {
                 <FormItem>
                   <FormLabel>Name</FormLabel>
                   <FormControl>
-                    <Input placeholder="Personal" {...field} />
+                    <Input placeholder="Sport" {...field} />
                   </FormControl>
-                  <FormDescription>Collection name</FormDescription>
+                  <FormDescription>Kategorie Name</FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
@@ -113,7 +113,7 @@ function CreateCollectionSheet({ open, onOpenChange }: Props) {
               name="color"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Color</FormLabel>
+                  <FormLabel>Farbe</FormLabel>
                   <FormControl>
                     <Select onValueChange={(color) => field.onChange(color)}>
                       <SelectTrigger
@@ -123,7 +123,7 @@ function CreateCollectionSheet({ open, onOpenChange }: Props) {
                         )}
                       >
                         <SelectValue
-                          placeholder="Color"
+                          placeholder="Farbe wählen"
                           className="w-full h-8"
                         />
                       </SelectTrigger>
@@ -144,7 +144,7 @@ function CreateCollectionSheet({ open, onOpenChange }: Props) {
                     </Select>
                   </FormControl>
                   <FormDescription>
-                    Select a color for your collection
+                  Wähle eine Farbe für die Kategorie
                   </FormDescription>
                   <FormMessage />
                 </FormItem>
@@ -163,7 +163,7 @@ function CreateCollectionSheet({ open, onOpenChange }: Props) {
             )}
             onClick={form.handleSubmit(onSubmit)}
           >
-            Confirm
+           Hinzufügen
             {form.formState.isSubmitting && (
               <ReloadIcon className="ml-2 h-4 w-4 animate-spin" />
             )}

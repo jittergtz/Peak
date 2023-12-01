@@ -1,11 +1,13 @@
-"use client";
+
 import { Task } from "@prisma/client";
 import React, { useTransition } from "react";
 import { Checkbox } from "./ui/checkbox";
 import { format } from "date-fns";
 import { cn } from "@/lib/utils";
-import { setTaskToDone } from "@/actions/task";
+import { deleteTask, setTaskToDone } from "@/actions/task";
 import { useRouter } from "next/navigation";
+import { Baloo_2 } from "next/font/google";
+import { toast } from "./ui/use-toast";
 
 function getExpirationColor(expiresAt: Date) {
   const days = Math.floor(expiresAt.getTime() - Date.now()) / 1000 / 60 / 60;
@@ -18,6 +20,16 @@ function getExpirationColor(expiresAt: Date) {
 }
 
 function TaskCard({ task }: { task: Task }) {
+
+  const removeTask = async () => {
+    try {
+      await deleteTask(task.id);
+
+      router.refresh();
+    } catch (e) {
+
+    }
+  };
   const [isLoading, startTransition] = useTransition();
   const router = useRouter();
   return (
@@ -31,6 +43,24 @@ function TaskCard({ task }: { task: Task }) {
           startTransition(async () => {
             await setTaskToDone(task.id);
             router.refresh();
+
+            setTimeout(async () => {
+              // Hier kannst du den Code für das Löschen aus deiner Datenbank hinzufügen
+              try {
+                // Hier ein Beispiel, wie du die Datenbankoperation durchführen könntest
+                await removeTask(); 
+                toast({
+                  title: "Aufgabe abgeschlossen",});
+
+              } catch (error) {
+                toast({
+                  title: "Error",
+                  description: "Aufgabe konnte nicht abgeschlossen werden",
+                  variant: "destructive",});
+              }
+            }, 1000);
+            clearTimeout
+
           });
         }}
       />

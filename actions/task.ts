@@ -44,3 +44,18 @@ export async function setTaskToDone(id: number) {
         }
     })
 }
+
+
+export async function deleteTask(id: number) {
+    const user = await currentUser();
+    if (!user) {
+        throw new Error("user not found")
+    }
+
+    return await prisma.task.delete({
+        where: {
+            id: id,
+            userId: user.id
+        }
+    })
+}

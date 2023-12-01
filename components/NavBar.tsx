@@ -5,7 +5,7 @@ import ThemeSwitcher from "./ThemeSwitcher";
 
 function NavBar() {
   return (
-    <nav className="flex w-full items-center justify-between p-4 px-8 h-[60px]">
+    <nav className="flex w-full items-center justify-between p-4 px-8 h-[60px] dark:bg-neutral-950 ">
       <Logo />
       <div className="flex gap-4 items-center">
         <UserButton afterSignOutUrl="/" />
