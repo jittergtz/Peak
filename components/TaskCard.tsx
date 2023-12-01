@@ -16,7 +16,7 @@ function getExpirationColor(expiresAt: Date) {
 
   if (days <= 3 * 24) return "text-red-500 dark:text-red-400";
   if (days <= 7 * 24) return "text-orange-500 dark:text-orange-400";
-  return "text-gree-500 dark:text-green-400";
+  return "text-green-500 dark:text-green-400";
 }
 
 function TaskCard({ task }: { task: Task }) {
