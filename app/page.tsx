@@ -30,7 +30,7 @@ function page() {
                 </div>
                 <Button >
                 <Link href={"/dashboard"}>
-                    Loslegen,
+                    Loslegen
                     </Link>
                 </Button>
              
