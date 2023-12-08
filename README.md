@@ -6,7 +6,7 @@
 
 
 
-Peak is a modern habbit and task tracker
+Peak is a modern habit and task tracker
 
 
 
